@@ -22,11 +22,11 @@ export class AppEnv implements AppEnvInterface {
         return process.env.PG_DB || "nab";
     }
     get pgUser(): string {
-        return process.env.PG_USER || "nab-server";
+        return process.env.PG_USER || "postgres";
       }
     
     get pgPass(): string {
-        return process.env.PG_PASS || "Password";
+        return process.env.PG_PASS || "password";
     }
     get corsEnabled(): boolean {
         return process.env.CORS_ENABLED === "true";
