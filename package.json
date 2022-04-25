@@ -2,68 +2,19 @@
   "name": "NodeTS",
   "version": "0.0.0",
   "scripts": {
-    "build": "./node_modules/.bin/ts-node build.ts",
-    "lint": "eslint . --ext .ts",
-    "start": "node -r module-alias/register ./dist --env=production",
-    "start:dev": "nodemon",
-    "test": "nodemon --config ./spec/nodemon.json",
-    "test:no-reloading": "./node_modules/.bin/ts-node -r tsconfig-paths/register ./spec"
+    "dev": "npm run build-ts && npm run dev:watch",
+    "dev:watch": "concurrently --kill-others -p \"[{name}]\" -n \"TypeScript,Node\" -c \"yellow.bold,cyan.bold,green.bold\" \"npm run watch-ts\" \"npm run watch-node\"",
+    "watch-ts": "tsc -w",
+    "build-ts": "tsc",
+    "watch-node": "nodemon --delay 1 --watch dev --exec npm run start:dev",
+    "build": "npm run build-ts",
+    "start:dev": "cross-env NODE_ENV=development DISABLE_LOGGING=false node dev/index.js"
   },
-  "nodemonConfig": {
-    "watch": [
-      "src"
-    ],
-    "ext": "ts, html",
-    "ignore": [
-      "src/public"
-    ],
-    "exec": "./node_modules/.bin/ts-node -r tsconfig-paths/register ./src"
-  },
-  "_moduleAliases": {
-    "@services": "dist/services",
-    "@repos": "dist/repos",
-    "@entities": "dist/entities",
-    "@shared": "dist/shared",
-    "@server": "dist/server",
-    "@routes": "dist/routes"
-  },
-  "eslintConfig": {
-    "parser": "@typescript-eslint/parser",
-    "plugins": [
-      "@typescript-eslint"
-    ],
-    "extends": [
-      "eslint:recommended",
-      "plugin:@typescript-eslint/recommended",
-      "plugin:@typescript-eslint/recommended-requiring-type-checking"
-    ],
-    "parserOptions": {
-      "project": "./tsconfig.json"
-    },
-    "rules": {
-      "max-len": [
-        "error",
-        {
-          "code": 100
-        }
-      ],
-      "no-console": 1,
-      "no-extra-boolean-cast": 0,
-      "@typescript-eslint/restrict-plus-operands": 0,
-      "@typescript-eslint/explicit-module-boundary-types": 0,
-      "@typescript-eslint/no-explicit-any": 0,
-      "@typescript-eslint/no-floating-promises": 0,
-      "@typescript-eslint/no-unsafe-member-access": 0,
-      "@typescript-eslint/no-unsafe-assignment": 0
-    }
-  },
-  "eslintIgnore": [
-    "src/public/",
-    "build.ts"
-  ],
   "dependencies": {
     "command-line-args": "^5.2.1",
+    "concurrently": "^7.1.0",
     "cookie-parser": "^1.4.6",
+    "cross-env": "^7.0.3",
     "dotenv": "^16.0.0",
     "express": "^4.17.3",
     "express-async-errors": "^3.1.1",
