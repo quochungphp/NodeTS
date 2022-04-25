@@ -1,15 +1,12 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
 import 'reflect-metadata';
-
-import * as bodyParser from 'body-parser';
-import * as cookieParser from 'cookie-parser';
-
-import { DataSource } from 'typeorm';
+import { ConnectionOptions, createConnection } from 'typeorm';
 import { useExpressServer } from 'routing-controllers';
 import express, { NextFunction, Request, Response } from 'express';
 import { UserController } from '../../components/user/user.controller';
 import { AppEnvInterface } from '../environment/app-env.interface';
 import { AppEnv } from '../environment/app-env';
+import { UserEntity } from '../../components/user/repositories/user.entity';
 
 export class BootstrapApp { 
     public app: express.Application = {} as express.Application;
@@ -18,8 +15,9 @@ export class BootstrapApp {
 
     constructor() {
         this.appEnv = new AppEnv();
-        this.initDatabaseConnection();
+        
         this.app = express();
+        this.initDatabaseConnection();
         useExpressServer(this.app, {
             controllers: [UserController], 
         });
@@ -27,21 +25,16 @@ export class BootstrapApp {
 
     private initDatabaseConnection () : void {
         const {pgDb, pgHost,pgPass, pgUser, pgPort} = this.appEnv;
-        const connection =  new DataSource({
+        const connection: ConnectionOptions = {
             type: "postgres",
             host: pgHost,
             port: pgPort,
             username: pgUser,
             password: pgPass,
             database: pgDb,
-            entities: [],
-          });
-        connection.initialize()
-        .then(() => {
-            console.log("Connection successful")
-        })
-        .catch((error) => console.log(error));
-
+            entities: [UserEntity],
+          };
+          createConnection(connection);
     }
     private initRedis () : void {
 
@@ -62,6 +55,6 @@ export class BootstrapApp {
     public startApp () {
         this.app.listen(this.appEnv.port, () => {
             console.log(`Server is running by port: ${this.appEnv.port}`)
-        })
+        });
     }
 }

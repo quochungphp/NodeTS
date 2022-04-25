@@ -1,11 +1,16 @@
-import "reflect-metadata";
 import { Controller, Param, Body, Get, Post, Put, Delete } from 'routing-controllers';
+import { Repository, getConnectionManager } from "typeorm";
+import UserService from "./services/user.service";
 
 @Controller()
 export class UserController {
+  public userService = new UserService();
+
+
   @Get('/users')
-  getAll() {
-    return 'This action returns all users';
+  async getAll() {
+    const user = await this.userService.findAllUser();
+    return user;
   }
 
   @Get('/users/:id')

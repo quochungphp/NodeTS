@@ -19,7 +19,7 @@ export class AppEnv implements AppEnvInterface {
     }
 
     get pgDb(): string {
-        return process.env.PG_DB || "nab";
+        return process.env.PG_DB || "moneybag";
     }
     get pgUser(): string {
         return process.env.PG_USER || "postgres";
