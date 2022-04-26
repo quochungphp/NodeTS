@@ -1,8 +1,10 @@
-import { getManager, Repository } from "typeorm";
+import { EntityRepository, getManager, Repository } from "typeorm";
 import { UserEntity } from "./user.entity";
 
-export class UserRepository {
-    userRepo(): Repository<UserEntity> {
-      return  getManager().getRepository(UserEntity);
-    }
+@EntityRepository(UserEntity)
+export class UserRepository extends Repository<UserEntity>{
+  userRepo(): Repository<UserEntity> {
+    return  getManager().getRepository(UserEntity);
+  }
+  
 }
