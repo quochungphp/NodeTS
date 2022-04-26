@@ -18,7 +18,7 @@
     "strictFunctionTypes": true,
     "allowJs": true,
     "lib": ["es2018", "esnext.asynciterable", "DOM"],
-    "types": ["node"]
+    "types": [ "reflect-metadata","jest","node"]
   },
-  "include": ["src/**/*", "test/**/*", "typings/**/*"]
+  "include": ["src/**/*", "test/**/*", "typings/**/*",  ".env"]
 }

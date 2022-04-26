@@ -4,7 +4,7 @@ import cookieParser from 'cookie-parser';
 import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
-import { ConnectionOptions, createConnection,useContainer } from 'typeorm';
+import { Connection, ConnectionOptions, createConnection,useContainer } from 'typeorm';
 import { Action, useExpressServer } from 'routing-controllers';
 import express, { NextFunction, Request, Response } from 'express';
 import { UserController } from '../../components/user/user.controller';
@@ -23,9 +23,7 @@ export class BootstrapApp {
     constructor() {
         this.appEnv = new AppEnv();
         this.app = express();
-        this.initDatabaseConnection();
-        this.initMiddlewares();
-        
+        this.initMiddlewares();        
         useExpressServer(this.app, {
           authorizationChecker: async (action: Action, roles: string[]) => {
             // TODO: Implement JWT Token
@@ -37,7 +35,7 @@ export class BootstrapApp {
         });
     }
 
-    private initDatabaseConnection () : void {
+    public initDatabaseConnection () : Promise<Connection> {
         useContainer(Container);
         const {pgDb, pgHost,pgPass, pgUser, pgPort} = this.appEnv;
         const connection: ConnectionOptions = {
@@ -49,7 +47,7 @@ export class BootstrapApp {
             database: pgDb,
             entities: [UserEntity, ProductEntity],
           };
-          createConnection(connection);
+        return createConnection(connection);
     }
     private initCORS() : any {
         const { corsEnabled, corsAllowedOrigins } = this.appEnv;
@@ -111,8 +109,17 @@ export class BootstrapApp {
     }
 
     public startApp () {
+      this.initDatabaseConnection().then(() => {
         this.app.listen(this.appEnv.port, () => {
-            console.log(`Server is running by port: ${this.appEnv.port}`)
-        });
+          console.log(`Server is running by port: ${this.appEnv.port}`)
+       });
+      }).catch((error) => {
+        console.error(error);
+      })
+
+    }
+
+    public getApp() {
+      return this.app
     }
 }
