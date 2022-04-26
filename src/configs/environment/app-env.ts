@@ -32,13 +32,17 @@ export class AppEnv implements AppEnvInterface {
         return process.env.CORS_ENABLED === "true";
       }
     
-      get corsAllowedOrigins(): string[] | "all" {
-        if (process.env.CORS_ALLOWED_ORIGINS === "all") {
-          return "all";
-        }
-    
-        return process.env.CORS_ALLOWED_ORIGINS
-          ? process.env.CORS_ALLOWED_ORIGINS.split(",").map((name) => name.trim())
-          : ["http://localhost:3030"];
+    get corsAllowedOrigins(): string[] | "all" {
+      if (process.env.CORS_ALLOWED_ORIGINS === "all") {
+        return "all";
       }
+  
+      return process.env.CORS_ALLOWED_ORIGINS
+        ? process.env.CORS_ALLOWED_ORIGINS.split(",").map((name) => name.trim())
+        : ["http://localhost:3030"];
+    }
+
+    get xApiKey(): string {
+      return process.env.X_API_KEY || "T8YX1AeAU9442sUMLD3RKudFK0TeLGl5VgpthKqvEC6kB5XlD1CW";
+  }
 }

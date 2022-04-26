@@ -1,9 +1,9 @@
 import { HttpError } from "routing-controllers";
 
-export class BadRequestError extends HttpError {
+export class BadRequestException extends HttpError {
   constructor(public correlationId: string, private debugMessage: string, resource: string) {
     super(400);
-    Object.setPrototypeOf(this, BadRequestError.prototype);
+    Object.setPrototypeOf(this, BadRequestException.prototype);
   }
 
   toJSON(): Record<string, string | Record<string, string>> {

@@ -5,7 +5,7 @@ import cors from 'cors';
 import helmet from 'helmet';
 import morgan from 'morgan';
 import { ConnectionOptions, createConnection,useContainer } from 'typeorm';
-import { useExpressServer } from 'routing-controllers';
+import { Action, useExpressServer } from 'routing-controllers';
 import express, { NextFunction, Request, Response } from 'express';
 import { UserController } from '../../components/user/user.controller';
 import { ProductController } from '../../components/product/product.controller';
@@ -25,7 +25,13 @@ export class BootstrapApp {
         this.app = express();
         this.initDatabaseConnection();
         this.initMiddlewares();
+        
         useExpressServer(this.app, {
+          authorizationChecker: async (action: Action, roles: string[]) => {
+            // TODO: Implement JWT Token
+            const token = action.request.headers['authorization'];
+            return true
+            },
             controllers: [UserController, ProductController], 
             cors: this.initCORS(),
         });

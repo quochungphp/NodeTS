@@ -8,4 +8,5 @@ export interface AppEnvInterface {
     readonly pgDb: string;
     readonly pgUser: string;
     readonly pgPass: string;
+    readonly xApiKey: string;
 }
