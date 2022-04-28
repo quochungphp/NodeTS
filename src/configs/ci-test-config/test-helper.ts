@@ -12,9 +12,6 @@ import express, { NextFunction, Request, Response } from "express";
 import { Container } from "typeorm-typedi-extensions";
 import { createServer, Server as HttpServer } from "node:http";
 import supertest from "supertest";
-import { UserController } from "../../components/user/user.controller";
-import { ProductController } from "../../components/product/product.controller";
-import { AppEnvironmentInterface } from "../environment/app-env.interface";
 import { AppEnv as AppEnvironment } from "../environment/app-env";
 import { UserEntity } from "../../components/user/repositories/user.entity";
 import { ProductEntity } from "../../components/product/repositories/product.entity";
@@ -36,7 +33,7 @@ export class TestHelper {
       port: pgPort,
       username: pgUser,
       password: pgPass,
-      database: pgDb,
+      database: pgDb, // should be replaced by test database
       entities: [UserEntity, ProductEntity],
     };
     return createConnection(connection);
@@ -65,4 +62,7 @@ export class TestHelper {
     this.connection.close();
     this.server.close();
   }
+
+  // Todo: clear database after finish test
+  async tearDown(): Promise<void> {}
 }

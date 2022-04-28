@@ -18,6 +18,7 @@ import { AppEnvironmentInterface } from "../environment/app-env.interface";
 import { AppEnv as AppEnvironment } from "../environment/app-env";
 import { UserEntity } from "../../components/user/repositories/user.entity";
 import { ProductEntity } from "../../components/product/repositories/product.entity";
+import { LoggingMiddleware } from "../../utils/middlewares/logger.middleware";
 
 export class BootstrapApp {
   public app: express.Application = {} as express.Application;
@@ -36,6 +37,7 @@ export class BootstrapApp {
       },
       controllers: [UserController, ProductController],
       cors: this.initCORS(),
+      middlewares: [LoggingMiddleware],
     });
   }
 
@@ -96,8 +98,6 @@ export class BootstrapApp {
   }
 
   private initRedis(): void {}
-
-  private initLogger(): void {}
 
   private initWorkers(): void {}
 

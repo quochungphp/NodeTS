@@ -4,6 +4,7 @@
     "src/**/*",
     "typings/**/*",
     "test/**/*.ts",
+    "typings/**/*",
     ".eslintrc.js",
     "jest.config.ts",
     "commitlint.config.js",
