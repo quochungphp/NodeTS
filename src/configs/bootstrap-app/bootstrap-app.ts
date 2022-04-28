@@ -19,6 +19,7 @@ import { AppEnv as AppEnvironment } from "../environment/app-env";
 import { UserEntity } from "../../components/user/repositories/user.entity";
 import { ProductEntity } from "../../components/product/repositories/product.entity";
 import { LoggingMiddleware } from "../../utils/middlewares/logger.middleware";
+import { rootLogger } from "../../utils/Logger";
 
 export class BootstrapApp {
   public app: express.Application = {} as express.Application;
@@ -112,11 +113,11 @@ export class BootstrapApp {
     this.initDatabaseConnection()
       .then(() => {
         this.app.listen(this.appEnv.port, () => {
-          console.log(`Server is running by port: ${this.appEnv.port}`);
+          rootLogger.info(`Server is running by port: ${this.appEnv.port}`);
         });
       })
       .catch((error) => {
-        console.error(error);
+        throw error;
       });
   }
 
