@@ -1,43 +1,50 @@
 import { Exclude } from 'class-transformer';
 import { IsNotEmpty } from 'class-validator';
-import { BaseEntity, Entity, PrimaryGeneratedColumn, Column, Unique, CreateDateColumn, UpdateDateColumn, Generated, Index, PrimaryColumn } from 'typeorm';
+import {
+  BaseEntity,
+  Entity,
+  PrimaryGeneratedColumn,
+  Column,
+  Unique,
+  CreateDateColumn,
+  UpdateDateColumn,
+  Generated,
+  Index,
+  PrimaryColumn,
+} from 'typeorm';
 import { UserInterface } from '../interfaces/user.interface';
-  export const USER_TABLE = "user";
-  
-  @Entity(USER_TABLE)
-  export class UserEntity extends BaseEntity implements UserInterface{
-    @PrimaryColumn()
-    @Generated("uuid")
-    id: string;
-  
-    @Column({ type: "varchar" })
-    fullName: string;
 
-    @Column({ type: "varchar" })
-    @Index()
-    email: string;
-    
-    @Exclude()
-    @Column({ type: "varchar" })
-    password: string;
+export const USER_TABLE = "user";
 
-    @Column({ type: "varchar" })
-    status: string;
+@Entity(USER_TABLE)
+export class UserEntity extends BaseEntity implements UserInterface {
+  @PrimaryColumn()
+  @Generated("uuid")
+  id: string;
 
-    @Column({ type: "int" })
-    phone: number;
+  @Column({ type: "varchar" })
+  fullName: string;
 
-    @Column({ type: "varchar" })
-    provider: string;
+  @Column({ type: "varchar" })
+  @Index()
+  email: string;
 
-    @Column({ type: "timestamp", default: "LOCALTIMESTAMP" })
+  @Exclude()
+  @Column({ type: "varchar" })
+  password: string;
 
-    createdAt: string;
+  @Column({ type: "varchar" })
+  status: string;
 
-    @Column({ type: "timestamp", default: "LOCALTIMESTAMP" })
+  @Column({ type: "int" })
+  phone: number;
 
-    updateAt: string;
-  
-   
-  }
-  
+  @Column({ type: "varchar" })
+  provider: string;
+
+  @Column({ type: "timestamp", default: "LOCALTIMESTAMP" })
+  createdAt: string;
+
+  @Column({ type: 'timestamp', default: 'LOCALTIMESTAMP' })
+  updateAt: string;
+}

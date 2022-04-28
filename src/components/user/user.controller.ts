@@ -8,8 +8,9 @@ import { UserService } from "./services/user.service";
 @Service()
 export class UserController {
   @Inject() private readonly userService: UserService;
+
   constructor() {
-    this.userService = Container.get(UserService)
+    this.userService = Container.get(UserService);
   }
 
   @Get('')

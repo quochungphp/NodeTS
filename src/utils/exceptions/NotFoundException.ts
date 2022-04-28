@@ -1,8 +1,6 @@
 import { HttpError } from "routing-controllers";
 
-export type NotFoundResourceType =
-  | "UserNotFound"
-  | "ProductNotFound";
+export type NotFoundResourceType = 'UserNotFound' | "ProductNotFound";
 export class NotFoundException extends HttpError {
   constructor(
     private correlationId: string,
