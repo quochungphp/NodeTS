@@ -23,7 +23,10 @@ module.exports = {
   rules: {
     "import/prefer-default-export": "off",
     "import/no-default-export": "error",
-    "unicorn/filename-case": ["error", { cases: { pascalCase: true, camelCase: true } }],
+    "unicorn/filename-case": [
+      "error",
+      { cases: { pascalCase: true, camelCase: true, kebabCase: true } },
+    ],
     "import/no-cycle": "off",
     "unicorn/no-null": "off",
     "func-names": ["warn", "as-needed"],

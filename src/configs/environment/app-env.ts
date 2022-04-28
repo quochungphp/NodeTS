@@ -1,3 +1,5 @@
+/* eslint-disable class-methods-use-this */
+/* eslint-disable unicorn/prevent-abbreviations */
 import dotenv from "dotenv";
 import { AppEnvironmentInterface } from "./app-env.interface";
 
