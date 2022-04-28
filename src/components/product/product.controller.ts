@@ -1,9 +1,11 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import "reflect-metadata";
-import { Authorized, Controller, Get, JsonController } from "routing-controllers";
+import { Authorized, Controller, Get, JsonController, QueryParams } from "routing-controllers";
 import Container, { Service, Inject } from "typedi";
 import { AuthorizedApiKey } from "../../utils/decorators/AuthorizedApiKey";
 import { ProductService } from "./services/product.service";
 import { AuthorizedApiKeyException } from "../../utils/exceptions/AuthorizedApiKeyException";
+import { ProductQueryDto } from "./dtos/ProductQuery.dto";
 
 @JsonController("/products")
 @Service()
@@ -16,7 +18,11 @@ export class ProductController {
 
   @Authorized()
   @Get("")
-  async getAll(@AuthorizedApiKey({ required: true }) isActive: boolean) {
-    return this.productService.findAllProduct();
+  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
+  async getAll(
+    @QueryParams() query: ProductQueryDto,
+    @AuthorizedApiKey({ required: true }) isActive: boolean,
+  ) {
+    return this.productService.findAllProduct(query);
   }
 }

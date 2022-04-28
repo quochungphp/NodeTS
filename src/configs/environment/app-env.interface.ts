@@ -1,3 +1,4 @@
+/* eslint-disable unicorn/prevent-abbreviations */
 export interface AppEnvironmentInterface {
   setup(): void;
   readonly port: number;
