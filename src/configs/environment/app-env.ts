@@ -1,5 +1,5 @@
 import dotenv from "dotenv";
-import { AppEnvironmentInterface } from './app-env.interface';
+import { AppEnvironmentInterface } from "./app-env.interface";
 
 export class AppEnv implements AppEnvironmentInterface {
   setup(): void {

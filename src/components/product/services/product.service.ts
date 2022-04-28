@@ -1,9 +1,9 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { EntityRepository, Repository } from "typeorm";
 import { Service } from "typedi";
 import { InjectRepository } from "typeorm-typedi-extensions";
-import { ProductInterface } from '../interfaces/Product.interface';
+import { ProductInterface } from "../interfaces/Product.interface";
 import { ProductRepository } from "../repositories/product.repository";
-import { ProductEntity } from '../repositories/product.entity';
+import { ProductEntity } from "../repositories/product.entity";
 
 @Service()
 export class ProductService {

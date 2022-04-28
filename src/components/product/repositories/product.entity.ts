@@ -1,5 +1,5 @@
-import { Exclude } from 'class-transformer';
-import { IsNotEmpty } from 'class-validator';
+import { Exclude } from "class-transformer";
+import { IsNotEmpty } from "class-validator";
 import {
   BaseEntity,
   Entity,
@@ -11,8 +11,8 @@ import {
   Generated,
   Index,
   PrimaryColumn,
-} from 'typeorm';
-import { ProductInterface } from '../interfaces/product.interface';
+} from "typeorm";
+import { ProductInterface } from "../interfaces/product.interface";
 
 export const PRODUCT_TABLE = "product";
 

@@ -1,20 +1,20 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import 'reflect-metadata';
-import cookieParser from 'cookie-parser';
-import cors from 'cors';
-import helmet from 'helmet';
-import morgan from 'morgan';
-import { Connection, ConnectionOptions, createConnection, useContainer } from 'typeorm';
-import { Action, useExpressServer } from 'routing-controllers';
-import express, { NextFunction, Request, Response } from 'express';
+import "reflect-metadata";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import helmet from "helmet";
+import morgan from "morgan";
+import { Connection, ConnectionOptions, createConnection, useContainer } from "typeorm";
+import { Action, useExpressServer } from "routing-controllers";
+import express, { NextFunction, Request, Response } from "express";
 import { Container } from "typeorm-typedi-extensions";
-import { createServer, Server as HttpServer } from "http";
+import { createServer, Server as HttpServer } from "node:http";
 import supertest from "supertest";
 import { UserController } from "../../components/user/user.controller";
 import { ProductController } from "../../components/product/product.controller";
 import { AppEnvironmentInterface } from "../environment/app-env.interface";
-import { AppEnv as AppEnvironment } from '../environment/app-env';
-import { UserEntity } from '../../components/user/repositories/user.entity';
+import { AppEnv as AppEnvironment } from "../environment/app-env";
+import { UserEntity } from "../../components/user/repositories/user.entity";
 import { ProductEntity } from "../../components/product/repositories/product.entity";
 import { BootstrapApp } from "../bootstrap-app/bootstrap-app";
 
@@ -29,7 +29,7 @@ export class TestHelper {
     useContainer(Container);
     const { pgDb, pgHost, pgPass, pgUser, pgPort } = new AppEnvironment();
     const connection: ConnectionOptions = {
-      type: 'postgres',
+      type: "postgres",
       host: pgHost,
       port: pgPort,
       username: pgUser,

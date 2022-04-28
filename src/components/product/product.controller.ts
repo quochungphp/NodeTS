@@ -1,11 +1,11 @@
-import 'reflect-metadata';
+import "reflect-metadata";
 import { Authorized, Controller, Get, JsonController } from "routing-controllers";
-import Container, { Service, Inject } from 'typedi';
-import { AuthorizedApiKey } from '../../utils/decorators/AuthorizedApiKey';
+import Container, { Service, Inject } from "typedi";
+import { AuthorizedApiKey } from "../../utils/decorators/AuthorizedApiKey";
 import { ProductService } from "./services/product.service";
 import { AuthorizedApiKeyException } from "../../utils/exceptions/AuthorizedApiKeyException";
 
-@JsonController('/products')
+@JsonController("/products")
 @Service()
 export class ProductController {
   @Inject() private readonly productService: ProductService;
@@ -15,7 +15,7 @@ export class ProductController {
   }
 
   @Authorized()
-  @Get('')
+  @Get("")
   async getAll(@AuthorizedApiKey({ required: true }) isActive: boolean) {
     return this.productService.findAllProduct();
   }

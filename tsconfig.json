@@ -20,5 +20,5 @@
     "lib": ["es2018", "esnext.asynciterable", "DOM"],
     "types": [ "reflect-metadata","jest","node"]
   },
-  "include": ["src/**/*", "test/**/*", "typings/**/*",  ".env"]
+  "include": ["src/**/*",  ".env"]
 }

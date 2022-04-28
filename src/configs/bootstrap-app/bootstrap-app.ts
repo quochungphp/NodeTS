@@ -1,19 +1,19 @@
 /* eslint-disable @typescript-eslint/no-empty-function */
-import 'reflect-metadata';
-import cookieParser from 'cookie-parser';
-import cors from 'cors';
-import helmet from 'helmet';
-import morgan from 'morgan';
-import { Connection, ConnectionOptions, createConnection, useContainer } from 'typeorm';
-import { Action, useExpressServer } from 'routing-controllers';
-import express, { NextFunction, Request, Response } from 'express';
+import "reflect-metadata";
+import cookieParser from "cookie-parser";
+import cors from "cors";
+import helmet from "helmet";
+import morgan from "morgan";
+import { Connection, ConnectionOptions, createConnection, useContainer } from "typeorm";
+import { Action, useExpressServer } from "routing-controllers";
+import express, { NextFunction, Request, Response } from "express";
 import { Container } from "typeorm-typedi-extensions";
 import { UserController } from "../../components/user/user.controller";
 import { ProductController } from "../../components/product/product.controller";
-import { AppEnvironmentInterface } from '../environment/app-env.interface';
+import { AppEnvironmentInterface } from "../environment/app-env.interface";
 import { AppEnv as AppEnvironment } from "../environment/app-env";
 import { UserEntity } from "../../components/user/repositories/user.entity";
-import { ProductEntity } from '../../components/product/repositories/product.entity';
+import { ProductEntity } from "../../components/product/repositories/product.entity";
 
 export class BootstrapApp {
   public app: express.Application = {} as express.Application;
@@ -54,29 +54,29 @@ export class BootstrapApp {
     const { corsEnabled, corsAllowedOrigins } = this.appEnv;
     const cors = corsEnabled
       ? {
-          methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS', 'PATCH'],
+          methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS", "PATCH"],
           allowedHeaders: [
-            'Authorization',
-            'RefreshToken',
-            'Content-Type',
-            'Accept',
-            'Origin',
-            'Referer',
-            'User-Agent',
-            'Authorization',
-            'X-NAB-Signature',
-            'X-Api-Key',
-            'X-Request-Id',
+            "Authorization",
+            "RefreshToken",
+            "Content-Type",
+            "Accept",
+            "Origin",
+            "Referer",
+            "User-Agent",
+            "Authorization",
+            "X-NAB-Signature",
+            "X-Api-Key",
+            "X-Request-Id",
           ],
           exposedHeaders: [
-            'Authorization',
-            'RefreshToken',
-            'X-Api-Key',
-            'AccessToken',
-            'X-NAB-Signature',
+            "Authorization",
+            "RefreshToken",
+            "X-Api-Key",
+            "AccessToken",
+            "X-NAB-Signature",
           ],
           origin(origin: string, callback: (error: Error | null, success?: true) => void) {
-            if (corsAllowedOrigins === 'all') {
+            if (corsAllowedOrigins === "all") {
               callback(null, true);
               return;
             }

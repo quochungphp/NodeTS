@@ -1,5 +1,5 @@
-import { Exclude } from 'class-transformer';
-import { IsNotEmpty } from 'class-validator';
+import { Exclude } from "class-transformer";
+import { IsNotEmpty } from "class-validator";
 import {
   BaseEntity,
   Entity,
@@ -11,8 +11,8 @@ import {
   Generated,
   Index,
   PrimaryColumn,
-} from 'typeorm';
-import { UserInterface } from '../interfaces/user.interface';
+} from "typeorm";
+import { UserInterface } from "../interfaces/user.interface";
 
 export const USER_TABLE = "user";
 
@@ -45,6 +45,6 @@ export class UserEntity extends BaseEntity implements UserInterface {
   @Column({ type: "timestamp", default: "LOCALTIMESTAMP" })
   createdAt: string;
 
-  @Column({ type: 'timestamp', default: 'LOCALTIMESTAMP' })
+  @Column({ type: "timestamp", default: "LOCALTIMESTAMP" })
   updateAt: string;
 }

@@ -1,6 +1,6 @@
 import { createParamDecorator } from "routing-controllers";
-import { AppEnv as AppEnvironment } from '../../configs/environment/app-env';
-import { AuthorizedApiKeyException } from '../exceptions/AuthorizedApiKeyException';
+import { AppEnv as AppEnvironment } from "../../configs/environment/app-env";
+import { AuthorizedApiKeyException } from "../exceptions/AuthorizedApiKeyException";
 
 export function AuthorizedApiKey(options?: { required?: boolean }) {
   return createParamDecorator({

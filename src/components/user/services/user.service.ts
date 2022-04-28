@@ -1,8 +1,8 @@
-import { EntityRepository, Repository } from 'typeorm';
+import { EntityRepository, Repository } from "typeorm";
 import { Service } from "typedi";
 import { InjectRepository } from "typeorm-typedi-extensions";
-import { UserInterface } from '../interfaces/user.interface';
-import { UserEntity } from '../repositories/user.entity';
+import { UserInterface } from "../interfaces/user.interface";
+import { UserEntity } from "../repositories/user.entity";
 import { UserRepository } from "../repositories/user.repository";
 
 @Service()

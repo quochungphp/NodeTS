@@ -1,29 +1,33 @@
+// Place your settings in this file to overwrite default and user settings.
 {
-    "editor.tabSize": 2,
-    "search.exclude": {
-      "**/node_modules": true,
-      "**/bower_components": true,
-      "**/dist": true,
-      "**/coverge": true
-    },
-    "typescript.referencesCodeLens.enabled": true,
-    "appService.zipIgnorePattern": [
-      ".vscode{,/**}"
-    ],
-    "appService.deploySubpath": "",
-    "editor.codeActionsOnSave": {
-      "source.fixAll.eslint": true
-    },
-    "javascript.preferences.importModuleSpecifier": "relative",
-    "typescript.preferences.importModuleSpecifier": "relative",
-    "jest.runAllTestsFirst": false,
-    "jest.autoEnable": false,
-    "jest.showCoverageOnLoad": false,
-    "editor.wordWrap": "on",
-    "cSpell.words": [
-      "Dtos",
-      "commitlint",
-      "internalid"
-    ]
-  }
-  
+  "editor.tabSize": 2,
+  "editor.formatOnPaste": false,
+  "importSorter.generalConfiguration.sortOnBeforeSave": true,
+  "importSorter.sortConfiguration.removeUnusedDefaultImports": true,
+  "importSorter.sortConfiguration.removeUnusedImports": true,
+  "importSorter.importStringConfiguration.tabSize": 2,
+  "importSorter.importStringConfiguration.trailingComma": "multiLine",
+  "importSorter.importStringConfiguration.maximumNumberOfImportExpressionsPerLine.type": "newLineEachExpressionAfterCountLimitExceptIfOnlyOne",
+  "importSorter.generalConfiguration.exclude": [
+    ".*spec\\.ts"
+  ],
+  "search.exclude": {
+    "**/node_modules": true,
+    "**/bower_components": true,
+    "**/dist": true,
+    "**/coverge": true
+  },
+  "typescript.referencesCodeLens.enabled": true,
+  "appService.zipIgnorePattern": [
+    ".vscode{,/**}"
+  ],
+  "appService.deploySubpath": "",
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": true
+  },
+  "javascript.preferences.importModuleSpecifier": "relative",
+  "typescript.preferences.importModuleSpecifier": "relative",
+  "editor.wordWrap": "on",
+  "cSpell.words": ["internalid"],
+  "importSorter.importStringConfiguration.quoteMark": "double"
+}
