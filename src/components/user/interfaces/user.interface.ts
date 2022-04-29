@@ -5,6 +5,7 @@ export interface UserInterface {
   provider: string;
   phone: number;
   status: string;
+  password?: string;
   createdAt: string;
   updateAt: string;
 }

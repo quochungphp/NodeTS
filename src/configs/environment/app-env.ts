@@ -1,8 +1,10 @@
 /* eslint-disable class-methods-use-this */
 /* eslint-disable unicorn/prevent-abbreviations */
 import dotenv from "dotenv";
+import { Service } from "typedi";
 import { AppEnvironmentInterface } from "./app-env.interface";
 
+@Service()
 export class AppEnv implements AppEnvironmentInterface {
   setup(): void {
     dotenv.config();
@@ -21,7 +23,7 @@ export class AppEnv implements AppEnvironmentInterface {
   }
 
   get pgDb(): string {
-    return process.env.PG_DB || "moneybag";
+    return process.env.PG_DB || "database-test";
   }
 
   get pgUser(): string {
@@ -44,6 +46,15 @@ export class AppEnv implements AppEnvironmentInterface {
     return process.env.CORS_ALLOWED_ORIGINS
       ? process.env.CORS_ALLOWED_ORIGINS.split(",").map((name) => name.trim())
       : ["http://localhost:3030"];
+  }
+
+  get jwtSecret(): string {
+    return process.env.JWT_SECRET || "supersecret";
+  }
+
+  /** expressed in seconds or a string describing a time span [zeit/ms](https://github.com/zeit/ms.js).  Eg: 60, "2 days", "10h", "7d" */
+  get jwtExpiresIn(): string {
+    return process.env.JWT_EXPIRES_IN || "1h";
   }
 
   get xApiKey(): string {

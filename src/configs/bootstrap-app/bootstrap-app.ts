@@ -20,6 +20,8 @@ import { UserEntity } from "../../components/user/repositories/user.entity";
 import { ProductEntity } from "../../components/product/repositories/product.entity";
 import { LoggingMiddleware } from "../../utils/middlewares/logger.middleware";
 import { rootLogger } from "../../utils/Logger";
+import { AuthController } from "../../components/auth/auth.controller";
+import { ErrorFormatterMiddleware } from "../../utils/middlewares/error-formatter.middleware";
 
 export class BootstrapApp {
   public app: express.Application = {} as express.Application;
@@ -36,9 +38,10 @@ export class BootstrapApp {
         const token = action.request.headers.authorization;
         return true;
       },
-      controllers: [UserController, ProductController],
+      controllers: [UserController, ProductController, AuthController],
       cors: this.initCORS(),
-      middlewares: [LoggingMiddleware],
+      middlewares: [LoggingMiddleware, ErrorFormatterMiddleware],
+      defaultErrorHandler: false,
     });
   }
 

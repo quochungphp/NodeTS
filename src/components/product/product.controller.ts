@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import "reflect-metadata";
 import { Authorized, Controller, Get, JsonController, QueryParams } from "routing-controllers";
@@ -18,7 +19,6 @@ export class ProductController {
 
   @Authorized()
   @Get("")
-  // eslint-disable-next-line @typescript-eslint/explicit-module-boundary-types
   async getAll(
     @QueryParams() query: ProductQueryDto,
     @AuthorizedApiKey({ required: true }) isActive: boolean,

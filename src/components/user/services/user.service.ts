@@ -1,4 +1,3 @@
-import { EntityRepository, Repository } from "typeorm";
 import { Service } from "typedi";
 import { InjectRepository } from "typeorm-typedi-extensions";
 import { UserInterface } from "../interfaces/user.interface";
@@ -13,5 +12,9 @@ export class UserService {
   public async findAllUser(): Promise<UserInterface[]> {
     const users: UserInterface[] = await this.userRepository.find();
     return users;
+  }
+
+  public async findUserByEmail(email: string): Promise<UserInterface | undefined> {
+    return this.userRepository.findOne({ email });
   }
 }
